@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Todo from "../component/Todo";
 
 const Ex1 = () => {
   const [todo, setTodo] = useState(null);
-
-  useEffect(() => {
-    fetchData();
-  },[]);
 
   const fetchData = async () => {
     try {
@@ -19,11 +14,16 @@ const Ex1 = () => {
   };
 
   console.log(todo);
-  return <div>
-      {todo.map((a, index) =>(
-          <Todo name={a.title}/>
+  return (
+    <div>
+      {todo && todo.map((a, index) => (
+        <h4 key={index}>{a.title}</h4>
       ))}
-  </div>;
+      <button className="button" onClick={fetchData}>
+        Show data
+      </button>
+    </div>
+  );
 };
 
 export default Ex1;
